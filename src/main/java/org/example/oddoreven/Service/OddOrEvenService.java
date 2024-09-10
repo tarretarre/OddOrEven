@@ -8,7 +8,7 @@ import java.util.Random;
 public class OddOrEvenService {
 
     private final Random random = new Random();
-    private int randomNumber;
+    public int randomNumber;
 
     public int generateRandomNumber() {
         randomNumber = random.nextInt(100) + 1;
