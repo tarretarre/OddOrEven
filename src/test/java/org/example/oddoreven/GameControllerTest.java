@@ -1,6 +1,5 @@
 package org.example.oddoreven;
 
-import lombok.Data;
 import org.example.oddoreven.controller.GameController;
 import org.example.oddoreven.service.OddOrEvenService;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-@Data
 @WebMvcTest(GameController.class)
 class GameControllerTest {
 

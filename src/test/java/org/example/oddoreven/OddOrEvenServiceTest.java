@@ -33,7 +33,7 @@ class OddOrEvenServiceTest {
 
     @Test
     void testCorrectOddChoice() {
-        oddOrEvenService.setRandomNumber(3); // Ställer in ett udda tal
+        oddOrEvenService.setRandomNumber(3);
         String result = oddOrEvenService.playRound("odd");
         assertTrue(result.isEmpty());
         assertEquals(1, oddOrEvenService.getCorrectChoices());
@@ -42,7 +42,7 @@ class OddOrEvenServiceTest {
 
     @Test
     void testWrongEvenChoice() {
-        oddOrEvenService.setRandomNumber(3); // Ställer in ett udda tal
+        oddOrEvenService.setRandomNumber(3);
         String result = oddOrEvenService.playRound("even");
         assertTrue(result.isEmpty());
         assertEquals(0, oddOrEvenService.getCorrectChoices());
@@ -52,7 +52,7 @@ class OddOrEvenServiceTest {
     @Test
     void testGameOver() {
         oddOrEvenService.setRoundCount(4);
-        oddOrEvenService.setRandomNumber(2); // Jämnt tal
+        oddOrEvenService.setRandomNumber(2);
         String result = oddOrEvenService.playRound("even");
         assertTrue(result.contains("You got 1 right out of 5!"));
         assertTrue(oddOrEvenService.isGameOver());
