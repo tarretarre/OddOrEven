@@ -1,60 +1,52 @@
 package org.example.oddoreven;
 
-import org.example.oddoreven.Controller.GameController;
-import org.example.oddoreven.Service.OddOrEvenService;
-import org.junit.jupiter.api.BeforeEach;
+import lombok.Data;
+import org.example.oddoreven.controller.GameController;
+import org.example.oddoreven.service.OddOrEvenService;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-
+@Data
+@WebMvcTest(GameController.class)
 class GameControllerTest {
 
-    @Mock
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
     private OddOrEvenService oddOrEvenService;
 
-    @Mock
-    private Model model;
-
-    @InjectMocks
-    private GameController gameController;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
+    @Test
+    void testHome() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("index"));
     }
 
     @Test
-    void testShowRandomNumber() {
-        when(oddOrEvenService.generateRandomNumber()).thenReturn(42);
-
-        String viewName = gameController.showRandomNumber(model);
-
-        verify(model).addAttribute("randomNumber", 42);
-        assertEquals("index", viewName);
+    void testStartGame() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/start"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("play"));
     }
 
     @Test
-    void testPlayOddOrEvenWithCorrectGuess() {
-        when(oddOrEvenService.checkOddOrEven("even")).thenReturn("Correct! Well done!");
-
-        String viewName = gameController.playOddOrEven("even", model);
-
-        verify(model).addAttribute("result", "Correct! Well done!");
-        assertEquals("result", viewName);
+    void testGamePlayCorrectChoice() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/play")
+                        .param("choice", "even")) // Example parameter
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("play"));
     }
 
     @Test
-    void testPlayOddOrEvenWithWrongGuess() {
-        when(oddOrEvenService.checkOddOrEven("odd")).thenReturn("Not correct, please try again!");
-
-        String viewName = gameController.playOddOrEven("odd", model);
-
-        verify(model).addAttribute("result", "Not correct, please try again!");
-        assertEquals("result", viewName);
+    void testFinishGame() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/finish"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("finish"));
     }
 }

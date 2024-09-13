@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles.css">
     <title>Odd or Even</title>
 </head>
 <body>
-<h1>Odd or Even</h1>
-<p>Number: <strong th:text="${randomNumber}">0</strong></p>
-
-<form action="/play" method="get">
-    <label for="choose">Is the number odd or even?</label>
-    <select name="choose" id="choose">
-        <option value="odd">Odd</option>
-        <option value="even">Even</option>
-    </select>
-    <button type="submit">Submit</button>
-</form>
+<div class="container">
+    <img src="/oddOrEven.jpg" alt="">
+    <h2>
+        <button type="submit" class="submit-button" name="choice" value="even"><a th:href="@{/start}">Play</a></button>
+    </h2>
+</div>
 </body>
 </html>

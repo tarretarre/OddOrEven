@@ -1,0 +1,43 @@
+body {
+    background-color: #edbe70;
+}
+
+.container {
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    background-color: #edbe70;
+    width: 50%;
+    margin: auto;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.top-box {
+    min-width: 100px;
+    width: fit-content;
+    height: 100px;
+    background-color: #FBC201;
+    font-size: 90px;
+    margin: auto;
+    border: 10px solid black;
+    padding: 10px;
+}
+
+.submit-button {
+    background-color: #FBC201;
+    border: 0;
+    border-radius: 5px;
+    width: 100px;
+    padding: 10px;
+    font-weight: bold;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+}
+
+.submit-button:hover {
+    box-shadow: 0 0 0 0;
+}

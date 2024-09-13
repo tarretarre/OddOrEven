@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Gameplay</title>
+</head>
+<body>
+  <div class="container">
+    <div class="top-box">
+      <strong th:text="${randomNumber}"></strong>
+    </div><br>
+    <form action="/play" method="post">
+      <label><h2>Is the number odd or even?</h2></label><br>
+      <button type="submit" class="submit-button" name="choice" value="odd">Odd</button>
+      <button type="submit" class="submit-button" name="choice" value="even">Even</button>
+    </form>
+  </div>
+</body>
+</html>
